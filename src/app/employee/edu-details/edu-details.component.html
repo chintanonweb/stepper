@@ -1,0 +1,77 @@
+    <ng-template matStepLabel>Education Details</ng-template>
+    <div class="example-button-container">
+        <button mat-mini-fab color="primary" aria-label="add more Education field" (click)="addEducation()">
+            <mat-icon>add</mat-icon>
+        </button> <span class="ms-2">Add Education</span>
+    </div>
+    <form [formGroup]="eduFormGroup">
+        <div formArrayName="education">
+            <div *ngFor="let exp of education.controls; index as i" [formGroupName]="i">
+                <mat-card class="my-2">
+                    <div class="cancel-button">
+                        <button mat-mini-fab color="warn" aria-label="Remove Education field" *ngIf="i> 0"
+                            (click)="deleteEducation(i)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </div>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Course</mat-label>
+
+                        <input matInput placeholder="Course" type="text" formControlName="courseCtrl" />
+                        <mat-error
+                            *ngIf="education.controls[i].get('courseCtrl')?.invalid && (education.controls[i].get('courseCtrl')?.dirty || education.controls[i].get('courseCtrl')?.touched)">
+                            <div *ngIf="education.controls[i].get('courseCtrl')?.errors?.required">
+                                Please Enter Course Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>university</mat-label>
+                        <input matInput placeholder="university" type="text" formControlName="uniCtrl" />
+                        <mat-error
+                            *ngIf="education.controls[i].get('uniCtrl')?.invalid && (education.controls[i].get('uniCtrl')?.dirty || education.controls[i].get('uniCtrl')?.touched)">
+                            <div *ngIf="education.controls[i].get('uniCtrl')?.errors?.required">
+                                Please Enter university Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Grade</mat-label>
+                        <input matInput placeholder="grade" type="text" formControlName="gradeCtrl" />
+                        <mat-error
+                            *ngIf="education.controls[i].get('gradeCtrl')?.invalid && (education.controls[i].get('gradeCtrl')?.dirty || education.controls[i].get('gradeCtrl')?.touched)">
+                            <div *ngIf="education.controls[i].get('gradeCtrl')?.errors?.required">
+                                Please Enter the grade
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Passed On</mat-label>
+                        <input matInput [matDatepicker]="picker4" formControlName="passCtrl">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                        <mat-error
+                            *ngIf="education.controls[i].get('passCtrl')?.invalid && (education.controls[i].get('passCtrl')?.dirty || education.controls[i].get('passCtrl')?.touched)">
+                            <div *ngIf="education.controls[i].get('passCtrl')?.errors?.required">
+                                Please Select the date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>To</mat-label>
+                        <input matInput [matDatepicker]="picker5" formControlName="toCtrl">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                        <mat-datepicker #picker5></mat-datepicker>
+                        <mat-error
+                            *ngIf="education.controls[i].get('toCtrl')?.invalid && (education.controls[i].get('toCtrl')?.dirty || education.controls[i].get('toCtrl')?.touched)">
+                            <div *ngIf="education.controls[i].get('toCtrl')?.errors?.required">
+                                Please Select the date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </mat-card>
+            </div>
+        </div>
+    </form>

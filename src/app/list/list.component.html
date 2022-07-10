@@ -1,0 +1,64 @@
+<div class="container">
+
+    <mat-card>
+        <div class="d-flex justify-content-between mb-2">
+            <span>
+                <mat-form-field appearance="fill">
+                    <mat-label>Search</mat-label>
+                    <input type="text" matInput placeholder="Search" [(ngModel)]="searchInput" name="searchInput">
+                    <!-- <input type="search" matInput placeholder="Search" (change)="onSearchCustomer($event)"> -->
+
+                </mat-form-field>
+            </span>
+            <span>
+                <button mat-raised-button color="primary" class="me-2" routerLink="/add">Add</button>
+            </span>
+        </div>
+        <div class="card shadow p-3">
+            <table class="table table-borderless">
+                <tr>
+                    <th> Name</th>
+                    <th>Designation</th>
+                    <th>Department</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+                <!-- <ng-container *ngIf="employeeList">
+                    <tr *ngFor="let emp of employeeList | search:searchInput; index as i">
+                        <td>{{emp.pdetailsData.fnameCtrl +" "+ emp.pdetailsData.lnameCtrl}}</td>
+                        <td>{{emp.cstatusData.desigCtrl}}</td>
+                        <td>{{emp.cstatusData.deptCtrl}}</td>
+                        <td><img *ngIf="emp.pdetailsData.imgCtrl" src="{{emp.pdetailsData.imgCtrl}}" class="img-fluid"
+                                width="50px" height="50px" alt="">
+                        </td>
+                        <td>
+                            <a routerLink="/edit/{{i}}" class="text-decoration-none"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></a>
+                            <a (click)="delete()" class="text-decoration-none"> <i class="fa fa-trash"
+                                    aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                </ng-container> -->
+                <ng-container *ngIf="(employeeList | search:searchInput) as result" >
+                    <tr *ngFor="let emp of result ; index as i">
+                        <td>{{emp.pdetailsData.fnameCtrl +" "+ emp.pdetailsData.lnameCtrl}}</td>
+                        <td>{{emp.cstatusData.desigCtrl}}</td>
+                        <td>{{emp.cstatusData.deptCtrl}}</td>
+                        <td><img *ngIf="emp.pdetailsData.imgCtrl" src="{{emp.pdetailsData.imgCtrl}}" class="img-fluid"
+                                width="50px" height="50px" alt="">
+                        </td>
+                        <td>
+                            <a routerLink="/edit/{{i}}" class="text-decoration-none"><i class="fa fa-pencil"
+                                    aria-hidden="true"></i></a>
+                            <a (click)="delete()" class="text-decoration-none"> <i class="fa fa-trash"
+                                    aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                    <tr>  <td colspan="5" class="text-center pt-3" *ngIf="result.length === 0">No Data Found</td>  
+                    </tr>
+                </ng-container>
+            </table>
+            
+        </div>
+    </mat-card>
+</div>

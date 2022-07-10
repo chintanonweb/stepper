@@ -1,0 +1,38 @@
+    <form [formGroup]="profFormGroup" class="mt-3">
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Year</mat-label>
+            <input matInput placeholder="Month" formControlName="yearCtrl" />
+            <mat-error
+                *ngIf="profFormGroup.controls['yearCtrl'].invalid && (profFormGroup.controls['yearCtrl'].dirty || profFormGroup.controls['yearCtrl'].touched)">
+                <div *ngIf="profFormGroup.controls['yearCtrl'].errors?.required">
+                    Year is required
+                </div>
+                <div *ngIf="profFormGroup.controls['yearCtrl'].errors?.pattern">
+                    Only Numbers are allowed
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Month</mat-label>
+            <input matInput placeholder="Month" formControlName="monthCtrl" />
+            <mat-error
+                *ngIf="profFormGroup.controls['monthCtrl'].invalid && (profFormGroup.controls['monthCtrl'].dirty || profFormGroup.controls['monthCtrl'].touched)">
+                <div *ngIf="profFormGroup.controls['monthCtrl'].errors?.required">
+                    Please Enter Month
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Technolgies</mat-label>
+            <mat-select formControlName="techCtrl" multiple>
+                <mat-option *ngFor="let techCtrl of techList" [value]="techCtrl">{{techCtrl}}
+                </mat-option>
+            </mat-select>
+            <mat-error
+                *ngIf="profFormGroup.controls['techCtrl'].invalid || profFormGroup.controls['techCtrl'].touched">
+                <div *ngIf="profFormGroup.controls['techCtrl'].errors?.required">
+                    Please Select Technolgies
+                </div>
+            </mat-error>
+        </mat-form-field>
+    </form>

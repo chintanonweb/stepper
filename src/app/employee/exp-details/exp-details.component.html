@@ -1,0 +1,89 @@
+    <ng-template matStepLabel>Experience Details</ng-template>
+    <div class="example-button-container">
+        <button mat-mini-fab color="primary" aria-label="add more experience field"
+            (click)="addExperience()">
+            <mat-icon>add</mat-icon>
+        </button> <span class="ms-2"> Add Experience</span>
+    </div>
+    <form [formGroup]="expFormGroup">
+        <div formArrayName="experience">
+            <div *ngFor="let exp of experience.controls; index as i" [formGroupName]="i">
+                <mat-card class="my-2">
+
+                    <div class="cancel-button">
+                        <button mat-mini-fab color="warn" aria-label="add more experience field"
+                            *ngIf="i> 0" (click)="deleteExperience(i)">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </div>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Company</mat-label>
+                        <input matInput placeholder="Company" type="text" formControlName="companyCtrl" />
+                        <mat-error
+                            *ngIf="experience.controls[i].get('companyCtrl')?.invalid && (experience.controls[i].get('companyCtrl')?.dirty || experience.controls[i].get('companyCtrl')?.touched)">
+                            <div *ngIf="experience.controls[i].get('companyCtrl')?.errors?.required">
+                                Please Enter Company Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Designation</mat-label>
+                        <input matInput placeholder="Designation" type="text" formControlName="desigCtrl" />
+                        <mat-error
+                            *ngIf="experience.controls[i].get('desigCtrl')?.invalid && (experience.controls[i].get('desigCtrl')?.dirty || experience.controls[i].get('desigCtrl')?.touched)">
+                            <div *ngIf="experience.controls[i].get('desigCtrl')?.errors?.required">
+                                Please Enter Designation Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Department</mat-label>
+                        <input matInput placeholder="department" formControlName="deptCtrl" />
+                        <mat-error
+                            *ngIf="experience.controls[i].get('deptCtrl')?.invalid && (experience.controls[i].get('deptCtrl')?.dirty || experience.controls[i].get('deptCtrl')?.touched)">
+                            <div *ngIf="experience.controls[i].get('deptCtrl')?.errors?.required">
+                                Please Enter Designation Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>CTC</mat-label>
+                        <input matInput placeholder="CTC" formControlName="ctcCtrl" />
+                        <mat-error
+                            *ngIf="experience.controls[i].get('ctcCtrl')?.invalid && (experience.controls[i].get('ctcCtrl')?.dirty || experience.controls[i].get('ctcCtrl')?.touched)">
+                            <div *ngIf="experience.controls[i].get('ctcCtrl')?.errors?.required">
+                                Please Enter CTC
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Working From</mat-label>
+                        <input matInput [matDatepicker]="picker6" formControlName="wdateCtrl">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                        <mat-datepicker #picker6></mat-datepicker>
+                        <mat-error
+                            *ngIf="experience.controls[i].get('wdateCtrl')?.invalid && (experience.controls[i].get('wdateCtrl')?.dirty || experience.controls[i].get('wdateCtrl')?.touched)">
+                            <div *ngIf="experience.controls[i].get('wdateCtrl')?.errors?.required">
+                                Please Enter Working Date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>To</mat-label>
+                        <input matInput [matDatepicker]="picker7" formControlName="tdateCtrl">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                        <mat-datepicker #picker7></mat-datepicker>
+                        <mat-error
+                            *ngIf="experience.controls[i].get('tdateCtrl')?.invalid && (experience.controls[i].get('tdateCtrl')?.dirty || experience.controls[i].get('tdateCtrl')?.touched)">
+                            <div *ngIf="experience.controls[i].get('tdateCtrl')?.errors?.required">
+                                Please Select Date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                </mat-card>
+            </div>
+        </div>
+    </form>
+    

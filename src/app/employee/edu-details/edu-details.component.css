@@ -1,0 +1,16 @@
+.full-width-field {
+    width: 100%;
+ }
+ .half-width-field {
+    width: 100%;
+ }
+ .example-button-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ .cancel-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }

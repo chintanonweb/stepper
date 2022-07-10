@@ -1,0 +1,70 @@
+<div class="container">
+    <mat-card>
+        <mat-horizontal-stepper linear #stepper (selectionChange)="selectionChange($event)">
+
+            <mat-step [stepControl]="pdetailsFormGroup" label="Personal Details">
+                <app-pdetails #stepOne [empDataById]="employeeDetailById?.pdetailsData"></app-pdetails>
+            </mat-step>
+
+            <mat-step [stepControl]="bankFormGroup" label="Bank Details">
+                <app-bank-details #stepTwo [empDataById]="employeeDetailById?.bankData"></app-bank-details>
+            </mat-step>
+
+            <mat-step [stepControl]="profFormGroup" label="Professional Details">
+                <app-prof-details #stepThree [empDataById]="employeeDetailById?.profData"></app-prof-details>
+            </mat-step>
+
+            <mat-step [stepControl]="cstatusFormGroup" label="Current Status">
+                <app-cstatus #stepFour [empDataById]="employeeDetailById?.cstatusData"></app-cstatus>
+            </mat-step>
+
+            <mat-step [stepControl]="expFormGroup" label="Experience Details">
+                <app-exp-details #stepFive [empDataById]="employeeDetailById"></app-exp-details>
+            </mat-step>
+
+            <mat-step [stepControl]="eduFormGroup" label="Education Details">
+                <app-edu-details #stepSix [empDataById]="employeeDetailById"></app-edu-details>
+            </mat-step>
+
+        </mat-horizontal-stepper>
+
+        <div class="example-button-container">
+            <button mat-stroked-button disabled [disabled]="selected===0? true: false" color="primary"  class="me-2" (click)="goBack(stepper)"
+                type="button">Back</button>
+
+            <button type="button" mat-stroked-button color="warn" class="me-2" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop">
+                Exit
+            </button>
+            <div *ngIf=id>
+                <button mat-raised-button color="primary" class="me-2"
+                    (click)="selected === 5 ? onSubmit() : goForward(stepper)" type="submit">
+                    {{selected === 5 ? 'Update': 'Next'}}
+                </button>
+            </div>
+            <div *ngIf=!id>
+                <button mat-raised-button color="primary" class="me-2"
+                    (click)="selected === 5 ?  onSubmit() : goForward(stepper)" type="submit">
+                    {{selected === 5 ? 'Submit': 'Next'}}
+                </button>
+            </div>
+                
+        </div>
+    </mat-card>
+</div>
+<div class="modal" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3>Discard Changes</h3>
+                Are your sure You want to discard changes?
+            </div>
+            <div class="modal-footer">
+                <button type="button" mat-raised-button color="primary" class="me-2" (click)="listPage()"
+                    data-bs-dismiss="modal">Yes</button>
+                <button type="button" mat-raised-button color="warn" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>

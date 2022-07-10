@@ -1,0 +1,77 @@
+<form [formGroup]="pdetailsFormGroup" class="mt-3">
+    <div class="example-button-container mb-3">
+       <img *ngIf="pdetailsFormGroup.get('imgCtrl')?.value" src="{{pdetailsFormGroup.get('imgCtrl')?.value}}" class="img-fluid"
+                                width="150px" height="150px" alt="">
+        <button type="button" class="text-center mb-2" mat-raised-button (click)="fileInput.click()">Choose
+            Image</button>
+     <input type="file" hidden class="form-control" #fileInput mat-raised-button id="file" (change)="onImageChange($event)" formControlName="imgCtrl">
+
+    </div>
+        <ng-template matStepLabel>Personal Details</ng-template>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label> First Name</mat-label>
+            <input matInput placeholder="First name" type="text" name="fnameCtrl" formControlName='fnameCtrl'/>
+            <mat-error
+                *ngIf="pdetailsFormGroup.controls['fnameCtrl'].invalid && pdetailsFormGroup.controls['fnameCtrl'].touched">
+                <div *ngIf="pdetailsFormGroup.controls['fnameCtrl'].errors?.required">
+                    First Name is required!
+                </div>
+                <div *ngIf="pdetailsFormGroup.controls['fnameCtrl'].errors?.minlength">
+                    First Name cannot be less than 3 characters!
+                </div>  
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Last name" type="text" formControlName="lnameCtrl" required="">
+            <mat-error
+            *ngIf="pdetailsFormGroup.controls['lnameCtrl'].invalid && pdetailsFormGroup.controls['lnameCtrl'].touched">
+            <div *ngIf="pdetailsFormGroup.controls['lnameCtrl'].errors?.required">
+                Last Name is required!
+            </div>
+            <div *ngIf="pdetailsFormGroup.controls['lnameCtrl'].errors?.minlength">
+                Last Name cannot be less than 3 characters!
+            </div>  
+        </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>DOB</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dobCtrl">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error
+                *ngIf="pdetailsFormGroup.controls['dobCtrl'].invalid && (pdetailsFormGroup.controls['dobCtrl'].dirty || pdetailsFormGroup.controls['dobCtrl'].touched)">
+                <div *ngIf="pdetailsFormGroup.controls['dobCtrl'].errors?.required">
+                    Please Select Valid Date
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" type="number" formControlName="phoneCtrl" />
+            <mat-error
+                *ngIf="pdetailsFormGroup.controls['phoneCtrl'].invalid && (pdetailsFormGroup.controls['phoneCtrl'].dirty || pdetailsFormGroup.controls['phoneCtrl'].touched)">
+                <div *ngIf="pdetailsFormGroup.controls['phoneCtrl'].errors?.required">
+                    Phone Number is required 
+                </div>
+                <div *ngIf="pdetailsFormGroup.controls['phoneCtrl'].errors?.pattern">
+                    Please, Enter 10 digit Phone Number.
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email" formControlName="emailCtrl" />
+            <mat-error
+                *ngIf="pdetailsFormGroup.controls['emailCtrl'].invalid && (pdetailsFormGroup.controls['emailCtrl'].dirty || pdetailsFormGroup.controls['emailCtrl'].touched)">
+                <div *ngIf="pdetailsFormGroup.controls['emailCtrl'].errors?.required">
+                    Email is required
+                </div>
+            </mat-error>
+        </mat-form-field>
+    </form>

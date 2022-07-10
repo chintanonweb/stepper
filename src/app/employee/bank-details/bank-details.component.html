@@ -1,0 +1,54 @@
+<form [formGroup]="bankFormGroup" class="mt-3">
+    <mat-form-field appearance="fill" class="full-width-field">
+        <mat-label>Account Number</mat-label>
+        <input matInput placeholder="Account Number" type="number" formControlName="accnoCtrl" />
+        <mat-error
+            *ngIf="bankFormGroup.controls['accnoCtrl'].invalid && (bankFormGroup.controls['accnoCtrl'].dirty || bankFormGroup.controls['accnoCtrl'].touched)">
+            <div *ngIf="bankFormGroup.controls['accnoCtrl'].errors?.required">
+                Please Enter Account Number
+            </div>
+            <div *ngIf="bankFormGroup.controls['accnoCtrl'].errors?.pattern">
+                Please, Enter Valid Account Number.
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width-field">
+        <mat-label>IFSC Code</mat-label>
+        <input matInput placeholder="IFSC Code" type="text" formControlName="ifscCtrl" />
+        <mat-error
+            *ngIf="bankFormGroup.controls['ifscCtrl'].invalid && (bankFormGroup.controls['ifscCtrl'].dirty || bankFormGroup.controls['ifscCtrl'].touched)">
+            <div *ngIf="bankFormGroup.controls['ifscCtrl'].errors?.required">
+                Please Enter IFSC code
+            </div>
+            <div *ngIf="bankFormGroup.controls['ifscCtrl'].errors?.pattern">
+                Please, Enter Valid IFSC code
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width-field">
+        <mat-label>PanCard Number</mat-label>
+        <input matInput placeholder="PanCard Number" type="text" formControlName="panCtrl" />
+        <mat-error
+            *ngIf="bankFormGroup.controls['panCtrl'].invalid && (bankFormGroup.controls['panCtrl'].dirty || bankFormGroup.controls['panCtrl'].touched)">
+            <div *ngIf="bankFormGroup.controls['panCtrl'].errors?.required">
+                Please Enter PanCard Number
+            </div>
+            <div *ngIf="bankFormGroup.controls['panCtrl'].errors?.minlength">
+                Please, Enter Valid PanCard Number
+            </div>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width-field">
+        <mat-label>Aadhar Card Number</mat-label>
+        <input matInput placeholder="Aadhar Card Number" type="number" formControlName="adharCtrl" ng-minlength=9 ng-maxlength=9/>
+        <mat-error
+            *ngIf="bankFormGroup.controls['adharCtrl'].invalid && (bankFormGroup.controls['adharCtrl'].dirty || bankFormGroup.controls['adharCtrl'].touched)">
+            <div *ngIf="bankFormGroup.controls['adharCtrl'].errors?.required">
+                Please Enter Adhar Card Number
+            </div>
+            <div *ngIf="bankFormGroup.controls['adharCtrl'].errors?.minlength">
+                Please, Enter Valid Adhar Card Number
+            </div>
+        </mat-error>
+    </mat-form-field>
+</form>

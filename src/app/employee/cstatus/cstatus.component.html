@@ -1,0 +1,55 @@
+    <form [formGroup]="cstatusFormGroup" class="mt-3">
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Company</mat-label>
+            <input matInput placeholder="Company" type="text" formControlName="companyCtrl" />
+            <mat-error
+                *ngIf="cstatusFormGroup.controls['companyCtrl'].invalid && (cstatusFormGroup.controls['companyCtrl'].dirty || cstatusFormGroup.controls['companyCtrl'].touched)">
+                <div *ngIf="cstatusFormGroup.controls['companyCtrl'].errors?.required">
+                    Please Enter the Company Name
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Designation</mat-label>
+            <input matInput placeholder="designation" type="text" formControlName="desigCtrl" />
+            <mat-error
+                *ngIf="cstatusFormGroup.controls['desigCtrl'].invalid && (cstatusFormGroup.controls['desigCtrl'].dirty || cstatusFormGroup.controls['desigCtrl'].touched)">
+                <div *ngIf="cstatusFormGroup.controls['desigCtrl'].errors?.required">
+                    Please Enter the Designation
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Department</mat-label>
+            <input matInput placeholder="department" type="text" formControlName="deptCtrl" />
+            <mat-error
+                *ngIf="cstatusFormGroup.controls['deptCtrl'].invalid && (cstatusFormGroup.controls['deptCtrl'].dirty || cstatusFormGroup.controls['deptCtrl'].touched)">
+                <div *ngIf="cstatusFormGroup.controls['deptCtrl'].errors?.required">
+                    Please Enter Department Name
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>Working From</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="wdateCtrl">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error
+                *ngIf="cstatusFormGroup.controls['wdateCtrl'].invalid && (cstatusFormGroup.controls['wdateCtrl'].dirty || cstatusFormGroup.controls['wdateCtrl'].touched)">
+                <div *ngIf="cstatusFormGroup.controls['wdateCtrl'].errors?.required">
+                    Please Select the date
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="full-width-field">
+            <mat-label>CTC</mat-label>
+            <input matInput placeholder="CTC" formControlName="ctcCtrl" />
+            <mat-error
+                *ngIf="cstatusFormGroup.controls['ctcCtrl'].invalid && (cstatusFormGroup.controls['ctcCtrl'].dirty || cstatusFormGroup.controls['ctcCtrl'].touched)">
+                <div *ngIf="cstatusFormGroup.controls['ctcCtrl'].errors?.required">
+                    CTC is required
+                </div>
+            </mat-error>
+        </mat-form-field>
+    </form>

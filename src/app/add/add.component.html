@@ -1,0 +1,425 @@
+<div class="container">
+    <mat-card>
+        <mat-stepper [linear]="true" #stepper>
+            <!-- Personal Details Section Start -->
+            <mat-step [stepControl]="pdetailsFormGroup">
+                <form [formGroup]="pdetailsFormGroup">
+                    <button type="button" class="text-center mb-2" mat-raised-button (click)="fileInput.click()">Choose
+                        File</button>
+                    <input hidden (change)="onFileSelected()" #fileInput type="file" id="file">
+                    <ng-template matStepLabel>Personal Details</ng-template>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="First name" type="text" formControlName='fnameCtrl' required />
+                        <mat-error
+                            *ngIf="pdetailsFormGroup.controls['fnameCtrl'].invalid && (pdetailsFormGroup.controls['fnameCtrl'].dirty || pdetailsFormGroup.controls['fnameCtrl'].touched)">
+                            <div *ngIf="pdetailsFormGroup.controls['fnameCtrl'].errors?.required">
+                                Please Enter First Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput placeholder="Last name" type="text" formControlName="lnameCtrl" required="">
+                        <mat-error
+                            *ngIf="pdetailsFormGroup.controls['lnameCtrl'].invalid && (pdetailsFormGroup.controls['lnameCtrl'].dirty || pdetailsFormGroup.controls['lnameCtrl'].touched)">
+                            <div *ngIf="pdetailsFormGroup.controls['lnameCtrl'].errors?.required">
+                                Please Enter Last Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>DOB</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dobCtrl">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error
+                            *ngIf="pdetailsFormGroup.controls['dobCtrl'].invalid && (pdetailsFormGroup.controls['dobCtrl'].dirty || pdetailsFormGroup.controls['dobCtrl'].touched)">
+                            <div *ngIf="pdetailsFormGroup.controls['dobCtrl'].errors?.required">
+                                Please Select Valid Date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Phone</mat-label>
+                        <input matInput placeholder="Phone" type="number" formControlName="phoneCtrl" />
+                        <mat-error
+                            *ngIf="pdetailsFormGroup.controls['phoneCtrl'].invalid && (pdetailsFormGroup.controls['phoneCtrl'].dirty || pdetailsFormGroup.controls['phoneCtrl'].touched)">
+                            <div *ngIf="pdetailsFormGroup.controls['phoneCtrl'].errors?.required">
+                                Please Select Valid Date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" type="email" formControlName="emailCtrl" />
+                        <mat-error
+                            *ngIf="pdetailsFormGroup.controls['emailCtrl'].invalid && (pdetailsFormGroup.controls['emailCtrl'].dirty || pdetailsFormGroup.controls['emailCtrl'].touched)">
+                            <div *ngIf="pdetailsFormGroup.controls['emailCtrl'].errors?.required">
+                                Please Select Valid Date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <br>
+
+                    <div class="example-button-container">
+                        <button mat-stroked-button disabled class="me-2">Disabled</button>
+                        <button mat-stroked-button color="warn" class="me-2">Exit</button>
+                        <button mat-raised-button matStepperNext color="primary" class="me-2">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <!-- Personal Details Section end -->
+
+            <!-- Bank Details Section Start -->
+
+            <mat-step [stepControl]="bankFormGroup" label="Bank Details">
+                <form [formGroup]="bankFormGroup">
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Account Number</mat-label>
+                        <input matInput placeholder="Account Number" type="number" formControlName="accnoCtrl" />
+                        <mat-error
+                            *ngIf="bankFormGroup.controls['accnoCtrl'].invalid && (bankFormGroup.controls['accnoCtrl'].dirty || bankFormGroup.controls['accnoCtrl'].touched)">
+                            <div *ngIf="bankFormGroup.controls['accnoCtrl'].errors?.required">
+                                Please Enter Account Number
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>IFSC Code</mat-label>
+                        <input matInput placeholder="IFSC Code" type="number" formControlName="ifscCtrl" />
+                        <mat-error
+                            *ngIf="bankFormGroup.controls['ifscCtrl'].invalid && (bankFormGroup.controls['ifscCtrl'].dirty || bankFormGroup.controls['ifscCtrl'].touched)">
+                            <div *ngIf="bankFormGroup.controls['ifscCtrl'].errors?.required">
+                                Please Enter IFSC code
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>PanCard Number</mat-label>
+                        <input matInput placeholder="PanCard Number" type="text" formControlName="panCtrl" />
+                        <mat-error
+                            *ngIf="bankFormGroup.controls['panCtrl'].invalid && (bankFormGroup.controls['panCtrl'].dirty || bankFormGroup.controls['panCtrl'].touched)">
+                            <div *ngIf="bankFormGroup.controls['panCtrl'].errors?.required">
+                                Please Enter PanCard Number
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Aadhar Card Number</mat-label>
+                        <input matInput placeholder="Aadhar Card Number" type="number" formControlName="adharCtrl" />
+                        <mat-error
+                            *ngIf="bankFormGroup.controls['adharCtrl'].invalid && (bankFormGroup.controls['adharCtrl'].dirty || bankFormGroup.controls['adharCtrl'].touched)">
+                            <div *ngIf="bankFormGroup.controls['adharCtrl'].errors?.required">
+                                Please Enter Adhar Card Number
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="example-button-container">
+                        <button mat-stroked-button matStepperPrevious color="primary" class="me-2">Previous</button>
+                        <button mat-stroked-button color="warn" class="me-2">Exit</button>
+                        <button mat-raised-button matStepperNext color="primary" class="me-2">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            
+            <!-- Bank Details Section end -->
+
+            <!-- Professional Details Section Start -->
+                
+             <mat-step [stepControl]="profFormGroup" label="Professional Details">
+                <form [formGroup]="profFormGroup">
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Year</mat-label>
+                        <input matInput placeholder="Month" type="number" formControlName="yearCtrl" />
+                        <mat-error
+                            *ngIf="profFormGroup.controls['yearCtrl'].invalid && (profFormGroup.controls['yearCtrl'].dirty || profFormGroup.controls['yearCtrl'].touched)">
+                            <div *ngIf="profFormGroup.controls['yearCtrl'].errors?.required">
+                                Please Enter Year
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Month</mat-label>
+                        <input matInput placeholder="Month" type="number" formControlName="monthCtrl" />
+                        <mat-error
+                            *ngIf="profFormGroup.controls['monthCtrl'].invalid && (profFormGroup.controls['monthCtrl'].dirty || profFormGroup.controls['monthCtrl'].touched)">
+                            <div *ngIf="profFormGroup.controls['monthCtrl'].errors?.required">
+                                Please Enter Month
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Technolgies</mat-label>
+                        <mat-select [formControl]="toppings" multiple>
+                            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="example-button-container">
+                        <button mat-stroked-button matStepperPrevious color="primary" class="me-2">Previous</button>
+                        <button mat-stroked-button color="warn" class="me-2">Exit</button>
+                        <button mat-raised-button matStepperNext color="primary" class="me-2">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <!-- Professional Details Section end -->
+
+            <!-- Current Status Section start -->
+            <mat-step [stepControl]="cstatusFormGroup" label="Current Status">
+                <form [formGroup]="cstatusFormGroup">
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Company</mat-label>
+                        <input matInput placeholder="Company" type="text" formControlName="companyCtrl" />
+                        <mat-error
+                            *ngIf="cstatusFormGroup.controls['companyCtrl'].invalid && (cstatusFormGroup.controls['companyCtrl'].dirty || cstatusFormGroup.controls['companyCtrl'].touched)">
+                            <div *ngIf="cstatusFormGroup.controls['companyCtrl'].errors?.required">
+                                Please Enter the Company Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Designation</mat-label>
+                        <input matInput placeholder="designation" type="text" formControlName="desigCtrl" />
+                        <mat-error
+                            *ngIf="cstatusFormGroup.controls['desigCtrl'].invalid && (cstatusFormGroup.controls['desigCtrl'].dirty || cstatusFormGroup.controls['desigCtrl'].touched)">
+                            <div *ngIf="cstatusFormGroup.controls['desigCtrl'].errors?.required">
+                                Please Enter the Designation
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Department</mat-label>
+                        <input matInput placeholder="department" type="text" formControlName="deptCtrl" />
+                        <mat-error
+                            *ngIf="cstatusFormGroup.controls['deptCtrl'].invalid && (cstatusFormGroup.controls['deptCtrl'].dirty || cstatusFormGroup.controls['deptCtrl'].touched)">
+                            <div *ngIf="cstatusFormGroup.controls['deptCtrl'].errors?.required">
+                                Please Enter Department Name
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>Working From</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="wdateCtrl">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error
+                            *ngIf="cstatusFormGroup.controls['wdateCtrl'].invalid && (cstatusFormGroup.controls['wdateCtrl'].dirty || cstatusFormGroup.controls['wdateCtrl'].touched)">
+                            <div *ngIf="cstatusFormGroup.controls['wdateCtrl'].errors?.required">
+                                Please Select the date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill" class="full-width-field">
+                        <mat-label>CTC</mat-label>
+                        <input matInput placeholder="CTC" type="text" formControlName="ctcCtrl" />
+                        <mat-error
+                            *ngIf="cstatusFormGroup.controls['ctcCtrl'].invalid && (cstatusFormGroup.controls['ctcCtrl'].dirty || cstatusFormGroup.controls['ctcCtrl'].touched)">
+                            <div *ngIf="cstatusFormGroup.controls['ctcCtrl'].errors?.required">
+                                Please Select the date
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="example-button-container">
+                        <button mat-stroked-button matStepperPrevious color="primary" class="me-2">Previous</button>
+                        <button mat-stroked-button color="warn" class="me-2">Exit</button>
+                        <button mat-raised-button matStepperNext color="primary" class="me-2">Next</button>
+                    </div>
+                </form>
+            </mat-step>
+            <!-- Current Status Section end -->
+
+            <!-- Education Details Section start -->
+            <mat-step [stepControl]="eduFormGroup" label="Education Details">
+                <ng-template matStepLabel>Education Details</ng-template>
+                <div class="example-button-container">
+                    <button mat-mini-fab color="primary" aria-label="add more Education field" (click)="addEducation()">
+                        <mat-icon>add</mat-icon>
+                    </button> <span class="ms-2">Add Education</span>
+                </div>
+                <form [formGroup]="eduFormGroup">
+                    <div formArrayName="education">
+                        <div *ngFor="let exp of education.controls; index as i" [formGroupName]="i">
+                            <mat-card class="my-2">
+                                <div class="cancel-button">
+                                    <button mat-mini-fab color="warn" aria-label="Remove Education field" *ngIf="i> 0"
+                                        (click)="deleteEducation(i)">
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </div>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>Course</mat-label>
+                                    <input matInput placeholder="Course" type="text" formControlName="courseCtrl" />
+                                    <mat-error
+                                        *ngIf="education.controls[i].get('courseCtrl')?.invalid && (education.controls[i].get('courseCtrl')?.dirty || education.controls[i].get('courseCtrl')?.touched)">
+                                        <div *ngIf="education.controls[i].get('courseCtrl')?.errors?.required">
+                                            Please Enter Course Name
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>university</mat-label>
+                                    <input matInput placeholder="university" type="text" formControlName="uniCtrl" />
+                                    <mat-error
+                                        *ngIf="education.controls[i].get('uniCtrl')?.invalid && (education.controls[i].get('uniCtrl')?.dirty || education.controls[i].get('uniCtrl')?.touched)">
+                                        <div *ngIf="education.controls[i].get('uniCtrl')?.errors?.required">
+                                            Please Enter university Name
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>Grade</mat-label>
+                                    <input matInput placeholder="grade" type="text" formControlName="gradeCtrl" />
+                                    <mat-error
+                                        *ngIf="education.controls[i].get('gradeCtrl')?.invalid && (education.controls[i].get('gradeCtrl')?.dirty || education.controls[i].get('gradeCtrl')?.touched)">
+                                        <div *ngIf="education.controls[i].get('gradeCtrl')?.errors?.required">
+                                            Please Enter the grade
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>Passed On</mat-label>
+                                    <input matInput [matDatepicker]="picker4" formControlName="passCtrl">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker4></mat-datepicker>
+                                    <mat-error
+                                        *ngIf="education.controls[i].get('passCtrl')?.invalid && (education.controls[i].get('passCtrl')?.dirty || education.controls[i].get('passCtrl')?.touched)">
+                                        <div *ngIf="education.controls[i].get('passCtrl')?.errors?.required">
+                                            Please Select the date
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>To</mat-label>
+                                    <input matInput [matDatepicker]="picker5" formControlName="toCtrl">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker5></mat-datepicker>
+                                    <mat-error
+                                        *ngIf="education.controls[i].get('toCtrl')?.invalid && (education.controls[i].get('toCtrl')?.dirty || education.controls[i].get('toCtrl')?.touched)">
+                                        <div *ngIf="education.controls[i].get('toCtrl')?.errors?.required">
+                                            Please Select the date
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </mat-card>
+                        </div>
+                    </div>
+                </form>
+                <div class="example-button-container ">
+                    <button mat-stroked-button matStepperPrevious color="primary" class="me-2">Previous</button>
+                    <button mat-stroked-button color="warn" class="me-2">Exit</button>
+                    <button mat-raised-button matStepperNext color="primary" class="me-2">Next</button>
+                </div>
+            </mat-step>
+            <!-- Education Details Section end -->
+
+            <!-- Experience Details Section start -->
+            <mat-step [stepControl]="expFormGroup" label="Experience Details">
+                <ng-template matStepLabel>Experience Details</ng-template>
+                <div class="example-button-container">
+                    <button mat-mini-fab color="primary" aria-label="add more experience field"
+                        (click)="addExperience()">
+                        <mat-icon>add</mat-icon>
+                    </button> <span class="ms-2"> Add Experience</span>
+                </div>
+                <form [formGroup]="expFormGroup" (ngSubmit)="onSubmit()">
+                    <div formArrayName="experience">
+                        <div *ngFor="let exp of experience.controls; index as i" [formGroupName]="i">
+                            <mat-card class="my-2">
+
+                                <div class="cancel-button">
+                                    <button mat-mini-fab color="warn" aria-label="add more experience field"
+                                        *ngIf="i> 0" (click)="deleteExperience(i)">
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </div>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>Company</mat-label>
+                                    <input matInput placeholder="Company" type="text" formControlName="companyCtrl" />
+                                    <mat-error
+                                        *ngIf="experience.controls[i].get('companyCtrl')?.invalid && (experience.controls[i].get('companyCtrl')?.dirty || experience.controls[i].get('companyCtrl')?.touched)">
+                                        <div *ngIf="experience.controls[i].get('companyCtrl')?.errors?.required">
+                                            Please Enter Company Name
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>Designation</mat-label>
+                                    <input matInput placeholder="Designation" type="text" formControlName="desigCtrl" />
+                                    <mat-error
+                                        *ngIf="experience.controls[i].get('desigCtrl')?.invalid && (experience.controls[i].get('desigCtrl')?.dirty || experience.controls[i].get('desigCtrl')?.touched)">
+                                        <div *ngIf="experience.controls[i].get('desigCtrl')?.errors?.required">
+                                            Please Enter Designation Name
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>Department</mat-label>
+                                    <input matInput placeholder="department" type="text" formControlName="deptCtrl" />
+                                    <mat-error
+                                        *ngIf="experience.controls[i].get('deptCtrl')?.invalid && (experience.controls[i].get('deptCtrl')?.dirty || experience.controls[i].get('deptCtrl')?.touched)">
+                                        <div *ngIf="experience.controls[i].get('deptCtrl')?.errors?.required">
+                                            Please Enter Designation Name
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>CTC</mat-label>
+                                    <input matInput placeholder="CTC" type="text" formControlName="ctcCtrl" />
+                                    <mat-error
+                                        *ngIf="experience.controls[i].get('ctcCtrl')?.invalid && (experience.controls[i].get('ctcCtrl')?.dirty || experience.controls[i].get('ctcCtrl')?.touched)">
+                                        <div *ngIf="experience.controls[i].get('ctcCtrl')?.errors?.required">
+                                            Please Enter CTC
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>Working From</mat-label>
+                                    <input matInput [matDatepicker]="picker6" formControlName="wdateCtrl">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker6></mat-datepicker>
+                                    <mat-error
+                                        *ngIf="experience.controls[i].get('wdateCtrl')?.invalid && (experience.controls[i].get('wdateCtrl')?.dirty || experience.controls[i].get('wdateCtrl')?.touched)">
+                                        <div *ngIf="experience.controls[i].get('wdateCtrl')?.errors?.required">
+                                            Please Enter Working Date
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field appearance="fill" class="full-width-field">
+                                    <mat-label>To</mat-label>
+                                    <input matInput [matDatepicker]="picker7" formControlName="tdateCtrl">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker7></mat-datepicker>
+                                    <mat-error
+                                        *ngIf="experience.controls[i].get('tdateCtrl')?.invalid && (experience.controls[i].get('tdateCtrl')?.dirty || experience.controls[i].get('tdateCtrl')?.touched)">
+                                        <div *ngIf="experience.controls[i].get('tdateCtrl')?.errors?.required">
+                                            Please Select Date
+                                        </div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </mat-card>
+
+                        </div>
+                    </div>
+                    <div class="example-button-container ">
+                        <button mat-stroked-button matStepperPrevious color="primary" class="me-2">Previous</button>
+                        <button mat-stroked-button color="warn" class="me-2">Exit</button>
+                        <button mat-raised-button matStepperNext color="primary" class="me-2" (ngSubmit)="onSubmit()">Submit</button>
+                    </div>
+                </form>
+                
+            </mat-step>
+            <!-- Experience Details Section end -->
+        </mat-stepper>
+    </mat-card>
+</div>
